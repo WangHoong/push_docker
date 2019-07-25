@@ -10,12 +10,7 @@
 `
 docker-compose  stop
 `
-<<<<<<< HEAD
-=======
 
 
 1
-<<<<<<< HEAD
->>>>>>> parent of d2c317f... fixed 2
-=======
->>>>>>> parent of d2c317f... fixed 2
+ 
