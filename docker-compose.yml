@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+  redis:
+    container_name: 'redis'
+    image: redis
+    mem_limit: 300m
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./data/redis:/data
+  mongo:
+   container_name: 'mongo'
+   image: mongo
+   volumes:
+     - /data/db
+   ports:
+      - "27017:27017"
+
+  push-server:
+    container_name: 'push-server'
+    image: registry.cn-beijing.aliyuncs.com/fx/push-server
+    links:
+       - redis
+       - mongo
+    volumes:
+      - ./config/config-api.js:/var/www/push-server/config-api.js
+      - ./config/config-proxy.js:/var/www/push-server/config-proxy.js
+    command: /bin/bash -l -c  "cd /var/www/push-server &&  push-server -f"
+    ports:
+      - '11001:11001'
+      - '10001:10001'
+      - '12001:12001'
