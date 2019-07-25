@@ -12,4 +12,4 @@ docker-compose  stop
 `
 
 
-v: 3
+v: 1
